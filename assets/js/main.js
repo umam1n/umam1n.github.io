@@ -93,3 +93,78 @@ document.getElementById('contact-form')?.addEventListener('submit', e => {
   btn.style.background = '#16a34a';
   setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; e.target.reset(); }, 3000);
 });
+
+/* ── Modal Logic ─────────────────────────────────────── */
+const PROJECTS = {
+  'templatehrd': {
+    title: 'TemplateHRD.com',
+    cat: 'Web Development',
+    img: './assets/img/poverty_infographic.png',
+    desc: '<p>Led the end-to-end development of templatehrd.com, a specialized web platform designed to streamline HR documentation and processes.</p><p>Architected backend microservices and internal dashboards using TypeScript and PostgreSQL to monitor project health and resource allocation. Streamlined reporting workflows by automating SQL-based data extraction, which reduced manual errors and increased the speed of management decision-making.</p>',
+    tags: ['TypeScript', 'React', 'PostgreSQL', 'Node.js'],
+    link: 'https://templatehrd.com'
+  },
+  'stock-engine': {
+    title: 'Predictive Stock Engine',
+    cat: 'Machine Learning',
+    img: './assets/img/newplot.png',
+    desc: '<p>Developed a neural network-based dashboard using Streamlit to predict stock price movements with integrated real-time news sentiment analysis.</p><p>The system utilizes LSTM (Long Short-Term Memory) networks to process historical price data and provide future predictions, helping users make data-driven investment decisions.</p>',
+    tags: ['Python', 'TensorFlow', 'Keras', 'Streamlit', 'NLTK'],
+    link: 'https://github.com/umam1n/Portofolio'
+  },
+  'nuclear-dashboard': {
+    title: 'Nuclear Power Dashboard',
+    cat: 'Data Visualization',
+    img: './assets/img/home.png',
+    desc: '<p>Visualized the benefits and statistics of nuclear power plants versus other power sources to emphasize its potential as a sustainable low-emission solution.</p><p>The dashboard presents complex datasets in an accessible format, highlighting key metrics like carbon emissions, safety statistics, and efficiency across different energy types.</p>',
+    tags: ['Power BI', 'Data Analytics', 'Visualization', 'Sustainability'],
+    link: 'https://github.com/umam1n/Portofolio'
+  },
+  'poverty-trends': {
+    title: 'National Poverty Trends',
+    cat: 'Data Visualization',
+    img: './assets/img/poverty_infographic.png',
+    desc: '<p>A user-centered design project visualizing Indonesian poverty data through a high-fidelity infographic to drive public awareness on education\'s impact.</p><p>Analyzed multi-year demographic and economic data to identify correlations between education incompletion rates and poverty levels across different provinces in Indonesia.</p>',
+    tags: ['Data Viz', 'Infographic', 'Statistics', 'Social Impact'],
+    link: 'https://github.com/umam1n/Portofolio'
+  }
+};
+
+const modalOverlay = document.querySelector('.modal-overlay');
+const modalClose = document.querySelector('.modal-close');
+
+function openModal(id) {
+  const p = PROJECTS[id];
+  if (!p) return;
+
+  const modal = modalOverlay.querySelector('.modal-container');
+  modalOverlay.querySelector('.modal-hero img').src = p.img;
+  modalOverlay.querySelector('.modal-cat').textContent = p.cat;
+  modalOverlay.querySelector('.modal-title').textContent = p.title;
+  modalOverlay.querySelector('.modal-desc').innerHTML = p.desc;
+  modalOverlay.querySelector('.modal-tags').innerHTML = p.tags.map(t => `<span>${t}</span>`).join('');
+  modalOverlay.querySelector('.modal-cta').href = p.link;
+
+  modalOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  modalOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.project-card').forEach(card => {
+  card.addEventListener('click', (e) => {
+    e.preventDefault();
+    openModal(card.dataset.id);
+  });
+});
+
+modalClose?.addEventListener('click', closeModal);
+modalOverlay?.addEventListener('click', (e) => {
+  if (e.target === modalOverlay) closeModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modalOverlay?.classList.contains('open')) closeModal();
+});

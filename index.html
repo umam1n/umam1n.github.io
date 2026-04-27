@@ -262,7 +262,7 @@
 
       <div class="portfolio-grid fade-up">
         <!-- Project 1 -->
-        <a href="https://templatehrd.com" target="_blank" class="project-card">
+        <a href="https://templatehrd.com" target="_blank" class="project-card" data-id="templatehrd">
           <div class="project-img">
             <div class="project-img-placeholder">
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
@@ -280,7 +280,7 @@
         </a>
 
         <!-- Project 2 -->
-        <a href="https://github.com/umam1n/Portofolio" target="_blank" class="project-card">
+        <a href="https://github.com/umam1n/Portofolio" target="_blank" class="project-card" data-id="stock-engine">
           <div class="project-img">
             <img src="./assets/img/newplot.png" alt="Predictive Stock Engine">
           </div>
@@ -296,7 +296,7 @@
         </a>
 
         <!-- Project 3 -->
-        <a href="https://github.com/umam1n/Portofolio" target="_blank" class="project-card">
+        <a href="https://github.com/umam1n/Portofolio" target="_blank" class="project-card" data-id="nuclear-dashboard">
           <div class="project-img">
             <img src="./assets/img/home.png" alt="Nuclear Energy Infographic">
           </div>
@@ -312,7 +312,7 @@
         </a>
         
         <!-- Project 4 -->
-        <a href="https://github.com/umam1n/Portofolio" target="_blank" class="project-card">
+        <a href="https://github.com/umam1n/Portofolio" target="_blank" class="project-card" data-id="poverty-trends">
           <div class="project-img">
             <img src="./assets/img/poverty_infographic.png" alt="Poverty Trends Infographic">
           </div>
@@ -376,6 +376,36 @@
 
     </footer>
   </main>
+
+  <!-- Project Modal -->
+  <div class="modal-overlay">
+    <div class="modal-container">
+      <button class="modal-close" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="modal-hero">
+        <img src="" alt="Project Hero">
+      </div>
+      <div class="modal-body">
+        <div class="modal-header">
+          <div class="modal-cat"></div>
+          <h2 class="modal-title"></h2>
+        </div>
+        <div class="modal-content">
+          <div class="modal-desc"></div>
+          <div class="modal-meta">
+            <div class="meta-group">
+              <label>Technologies</label>
+              <div class="modal-tags"></div>
+            </div>
+            <div class="meta-group">
+              <a href="" target="_blank" class="btn-primary modal-cta">View Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="./assets/js/main.js"></script>
 </body>
