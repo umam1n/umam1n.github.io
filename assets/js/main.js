@@ -130,14 +130,13 @@ const PROJECTS = {
   }
 };
 
-const modalOverlay = document.querySelector('.modal-overlay');
-const modalClose = document.querySelector('.modal-close');
+const modalOverlay = document.getElementById('modal-overlay');
+const modalClose = document.getElementById('modal-close');
 
 function openModal(id) {
   const p = PROJECTS[id];
-  if (!p) return;
+  if (!p || !modalOverlay) return;
 
-  const modal = modalOverlay.querySelector('.modal-container');
   modalOverlay.querySelector('.modal-hero img').src = p.img;
   modalOverlay.querySelector('.modal-cat').textContent = p.cat;
   modalOverlay.querySelector('.modal-title').textContent = p.title;
@@ -150,13 +149,14 @@ function openModal(id) {
 }
 
 function closeModal() {
-  modalOverlay.classList.remove('open');
+  modalOverlay?.classList.remove('open');
   document.body.style.overflow = '';
 }
 
 document.querySelectorAll('.project-card').forEach(card => {
   card.addEventListener('click', (e) => {
     e.preventDefault();
+    e.stopPropagation();
     openModal(card.dataset.id);
   });
 });
@@ -166,5 +166,5 @@ modalOverlay?.addEventListener('click', (e) => {
   if (e.target === modalOverlay) closeModal();
 });
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && modalOverlay?.classList.contains('open')) closeModal();
+  if (e.key === 'Escape') closeModal();
 });
